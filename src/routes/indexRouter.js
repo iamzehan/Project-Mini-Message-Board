@@ -17,7 +17,7 @@ const messages = [
 ];
 
 indexRoute.get("/", (req, res) => {
-  res.json(messages);
+  res.render("messagesViews", {messages:messages});
 });
 
 module.exports = indexRoute;
