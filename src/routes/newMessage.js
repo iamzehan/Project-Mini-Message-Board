@@ -3,7 +3,11 @@ const {Router} = require('express');
 const newMessageRoute = Router();
 
 newMessageRoute.get("/", (req, res)=> {
-    res.send({message: "New message route"});
+    res.render("newMessageView");
 });
+
+newMessageRoute.post("/", (req, res)=> {
+    res.json(req.body);
+})
 
 module.exports = newMessageRoute;
