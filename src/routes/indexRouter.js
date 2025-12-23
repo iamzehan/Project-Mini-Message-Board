@@ -1,6 +1,6 @@
-// Initialize Route
-const { Route } = require("express");
-const indexRoute = Route();
+// Initialize Router
+const { Router } = require("express");
+const indexRoute = Router();
 
 // sample messages
 const messages = [

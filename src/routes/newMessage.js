@@ -1,6 +1,6 @@
 // Initialize Route
-const {Route} = require('express');
-const newMessageRoute = Route();
+const {Router} = require('express');
+const newMessageRoute = Router();
 
 newMessageRoute.get("/", (req, res)=> {
     res.send({message: "New message route"});
