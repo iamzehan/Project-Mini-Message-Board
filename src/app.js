@@ -12,8 +12,6 @@ const path = require("node:path");
 const router = require("./routes");
 
 //  LIVE RELOAD SETUP
-const livereload = require("livereload");
-const connectLiveReload = require("connect-livereload");
 
 // Create livereload server watching views & public
 if (process.env.NODE_ENV !== "production") {
