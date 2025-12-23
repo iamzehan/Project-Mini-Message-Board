@@ -16,19 +16,25 @@ const livereload = require("livereload");
 const connectLiveReload = require("connect-livereload");
 
 // Create livereload server watching views & public
-const liveReloadServer = livereload.createServer();
-liveReloadServer.watch([
-  path.join(__dirname, "views/**/*.ejs"),
-  path.join(__dirname, "public/css"),
-  path.join(__dirname, "public/js")
-]);
+if (process.env.NODE_ENV !== "production") {
+  const livereload = require("livereload");
+  const connectLiveReload = require("connect-livereload");
 
-app.use(connectLiveReload());
+  // Create livereload server watching views & public
+  const liveReloadServer = livereload.createServer();
+  liveReloadServer.watch([
+    path.join(__dirname, "views"),
+    path.join(__dirname, "public/css"),
+    path.join(__dirname, "public/js")
+  ]);
 
-liveReloadServer.server.once("connection", () => {
-  setTimeout(() => liveReloadServer.refresh("/"), 0);
-});
+  // Inject livereload script into Express
+  app.use(connectLiveReload());
 
+  liveReloadServer.server.once("connection", () => {
+    setTimeout(() => liveReloadServer.refresh("/"), 0);
+  });
+}
 
 // Middleware & Static Files
 const assetsPath = path.join(__dirname, "public");
