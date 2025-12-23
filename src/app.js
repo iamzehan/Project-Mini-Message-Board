@@ -9,8 +9,7 @@ require("dotenv").config();
 const path = require("node:path");
 
 // routes
-const indexRoute = require("./routes/indexRouter");
-const newMessageRoute = require("./routes/newMessage");
+const router = require("./routes");
 
 //  LIVE RELOAD SETUP
 const livereload = require("livereload");
@@ -43,8 +42,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // Routes
-app.use("/", indexRoute);
-app.use("/new", newMessageRoute);
+app.use("/", router);
 
 // Start Server
 const PORT = process.env.PORT ?? 3000;
